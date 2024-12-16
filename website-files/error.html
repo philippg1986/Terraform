@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-Spezialist und Softwareentwickler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>IT-Spezialist & angehender Softwareentwickler</h1>
+        <p>Willkommen auf meiner persönlichen Website!</p>
+    </header>
+
+    <nav>
+        <a href="#about">Über mich</a>
+        <a href="#skills">Fähigkeiten</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+
+    <div class="container">
+        <section id="about">
+            <h2>Error</h2>
+            <p>&nbsp;</p>
+        </section>
+
+        <section id="skills">
+            <h2>Datei nicht gefunden!</h2>
+            <p>Das hat wohl nicht funktioniert. Diese Datei ist im S3-Bucket nicht enthalten!</p>
+        </section>
+
+        <section id="contact">
+            <h2>Kontakt</h2>
+            <p>Du kannst mich per E-Mail unter <a href="mailto:your-email@example.com">your-email@example.com</a> erreichen oder auf LinkedIn finden.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 IT-Spezialist & Softwareentwickler</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                const section = document.getElementById(sectionId);
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
