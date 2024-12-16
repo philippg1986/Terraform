@@ -1,7 +1,12 @@
+/* 
+
+Management der Provider, Provider Versionen und Terraform Version
+
+*/
+
 terraform {
   required_version = ">=1.10.0"
   required_providers {
-    # AWS wird benötigt für AWS
     aws = {
       source  = "hashicorp/aws"
       version = "=5.81.0"
@@ -14,11 +19,16 @@ terraform {
   }
 }
 
+# Festlegen der Region bei der Erstellung von AWS Resourcen
 provider "aws" {
   region = "eu-north-1"
 }
 
-# ACM Certificate in us-east-1
+# Damit das Zertifikat für CloudFront genutzt werden kann, muss dieses in US-EAST-1 erstellt werden.
+# "To use an ACM certificate with Amazon CloudFront, you must request or import the certificate in the US East (N. Virginia) region."
+# Quelle: https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html (Abschnitt "Supported Regions")
+#
+# Daher wird hier der AWS Provider mit einem Alias für ACM eingerichtet.
 provider "aws" {
   alias  = "acm_provider"
   region = "us-east-1"

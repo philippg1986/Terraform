@@ -5,11 +5,14 @@ Management der Route53 Resourcen
 */
 
 # Festlegen der aktiven Zone für das Deployment der Website
+
+# Ermitteln der aktiven Zone, in der die Subdomain erstellt wird
 data "aws_route53_zone" "active_zone" {
   name         = var.hosted_zone
   private_zone = false
 }
 
+# Einfügen des Records für die DNS-Validierung des Zertifikats
 resource "aws_route53_record" "certificate_validation_record" {
   for_each = {
     for dvo in aws_acm_certificate.certificate.domain_validation_options : dvo.domain_name => {
@@ -27,6 +30,7 @@ resource "aws_route53_record" "certificate_validation_record" {
   zone_id         = data.aws_route53_zone.active_zone.id
 }
 
+# Einfügen des Eintrags für die Subdomain mit verweis auf die CloudFront Distribution
 resource "aws_route53_record" "subdomain" {
   zone_id = data.aws_route53_zone.active_zone.zone_id
   name    = "${var.subdomain}.${data.aws_route53_zone.active_zone.name}"

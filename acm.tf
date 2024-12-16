@@ -4,6 +4,10 @@ Management der Amazon Certificate Manager Resourcen
 
 */
 
+# Hier wird das Zertifikat beantragt
+# Die Validierung erfolgt mit per DNS-Record. Mail-Validierung wäre auch möglich,
+# widerspricht aber dem Automatisierungsgedanken
+
 resource "aws_acm_certificate" "certificate" {
   provider          = aws.acm_provider
   domain_name       = "${var.subdomain}.${data.aws_route53_zone.active_zone.name}"

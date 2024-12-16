@@ -4,6 +4,11 @@ Management der CloudFront Resourcen
 
 */
 
+# Hier wird eine Access Identity in CloudFront erstellt. Diese dient für den Zugriff auf das
+# S3-Bucket. Somit muss das Bucket nicht auf öffentlich gestellt werden.
+# Danach wird die S3-Policy ermittelt, welche im Bucket eingetragen wird, eine Caching Policy ermittelt
+# und die CloudFront Distribution erstellt
+
 resource "aws_cloudfront_origin_access_identity" "oai_bucket_access" {
   comment = "${var.subdomain}.${data.aws_route53_zone.active_zone.name}-Bucket Access Identity"
 }
