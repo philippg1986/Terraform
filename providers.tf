@@ -11,9 +11,15 @@ terraform {
       source  = "hashicorp/random"
       version = "3.6.3"
     }
-    local = {
-      source  = "hashicorp/local"
-      version = "2.5.2"
-    }
   }
+}
+
+provider "aws" {
+  region = "eu-north-1"
+}
+
+# ACM Certificate in us-east-1
+provider "aws" {
+  alias  = "acm_provider"
+  region = "us-east-1"
 }
